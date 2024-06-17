@@ -32,7 +32,7 @@ class BanquetReservationDialog extends JFrame {
     private JTextField endField;
 
     BanquetReservationDialog() {
-        super("Резервирование банкетного зала");
+        super("Banquet Room Reservation");
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
         BanquetMediator mediator = new BanquetMediator();
         Container contentPane = getContentPane();
@@ -50,7 +50,7 @@ class BanquetReservationDialog extends JFrame {
         okButton.addActionListener(new OkClick());
         mediator.registerOkButton(okButton);
         p.add(okButton);
-        JButton cancelButton = new JButton("Отмена");
+        JButton cancelButton = new JButton("Cancel");
         cancelButton.addActionListener(new cancelButtonClick());
         p.add(cancelButton);
         return p;
@@ -61,7 +61,7 @@ class BanquetReservationDialog extends JFrame {
         JPanel top = new JPanel(new BorderLayout(10, 5));
         JPanel countPanel;
         countPanel = new JPanel();
-        countPanel.add(new JLabel("Количество человек(10-50):"));
+        countPanel.add(new JLabel("Number of People (10-50):"));
         countField = new JTextField(4);
         mediator.registerPeopleCountField(countField);
         countPanel.add(countField);
@@ -83,10 +83,10 @@ class BanquetReservationDialog extends JFrame {
         mainPanel= new JPanel(new BorderLayout(5,3));
         mainPanel.add(createDateTimePanel(mediator), BorderLayout.WEST);
         mainPanel.add(createServicePanel(mediator), BorderLayout.CENTER);
-        String foods[]= { "Жареная говядина", "Вареные яйца", "Люля кебаб",
-                          "Буррито", "Лазанья", "Ветчина", "Стейк",
-                          "Шашлык из свинины", "Бефстроганов",
-                          "Жареный цыпленок"};
+        String foods[]= { "Roast Beef", "Egg Rolls", "Shish Kebob",
+                          "Burritos", "Lasagna", "Ham", "Veal Marsala",
+                          "Saurbraten", "Beef Wellington",
+                          "Mesquite Chicken"};
         JList foodList = new JList(foods);
         int mode = ListSelectionModel.MULTIPLE_INTERVAL_SELECTION;
         foodList.setSelectionMode(mode);
@@ -109,21 +109,21 @@ class BanquetReservationDialog extends JFrame {
         fieldConstraints.insets = new Insets(5,3,0,0);
         fieldConstraints.weighty = 0;
         JPanel datePanel = new JPanel(gb);
-        JLabel dateLabel = new JLabel("Дата (MM/DD/YY):");
+        JLabel dateLabel = new JLabel("Date (MM/DD/YY):");
         gb.setConstraints(dateLabel, labelConstraints);
         datePanel.add(dateLabel);
         dateField = new JTextField(10);
         mediator.registerDateField(dateField);
         gb.setConstraints(dateField, fieldConstraints);
         datePanel.add(dateField);
-        JLabel startLabel = new JLabel("Время начала (HH:MM):");
+        JLabel startLabel = new JLabel("Start Time (HH:MM):");
         gb.setConstraints(startLabel, labelConstraints);
         datePanel.add(startLabel);
         startField = new JTextField(7);
         mediator.registerStartField(startField);
         gb.setConstraints(startField, fieldConstraints);
         datePanel.add(startField);
-        JLabel endLabel = new JLabel("Время конца (HH:MM):");
+        JLabel endLabel = new JLabel("End Time (HH:MM):");
         labelConstraints.weighty = 1;
         gb.setConstraints(endLabel, labelConstraints);
         datePanel.add(endLabel);
@@ -137,16 +137,16 @@ class BanquetReservationDialog extends JFrame {
 
     private Container createServicePanel(BanquetMediator mediator) {
         ButtonGroup serviceGroup = new ButtonGroup();
-        JRadioButton tableServiceButton = new JRadioButton("Обслуживание");
+        JRadioButton tableServiceButton = new JRadioButton("Table Service");
         mediator.registerTableButton(tableServiceButton);
         serviceGroup.add(tableServiceButton);
-        JRadioButton buffetButton = new JRadioButton("Шведский стол");
+        JRadioButton buffetButton = new JRadioButton("Buffet Line");
         mediator.registerBuffetButton(buffetButton);
         serviceGroup.add(buffetButton);
 
         JPanel servicePanel = new JPanel();
         servicePanel.setLayout(new BoxLayout(servicePanel, BoxLayout.Y_AXIS));
-        servicePanel.setBorder(BorderFactory.createTitledBorder("Вид обслуживания"));
+        servicePanel.setBorder(BorderFactory.createTitledBorder("Service"));
         servicePanel.add(tableServiceButton);
         servicePanel.add(buffetButton);
         JPanel pad = new JPanel();
@@ -420,7 +420,7 @@ class BanquetReservationDialog extends JFrame {
     
     public class OkClick implements ActionListener {
     	public void actionPerformed(ActionEvent e) {
-    		JOptionPane.showMessageDialog(null, "Ваш заказ принят");
+    		JOptionPane.showMessageDialog(null, "Table is Reserved");
     	}
     }
     
